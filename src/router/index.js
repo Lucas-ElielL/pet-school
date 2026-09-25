@@ -1,3 +1,5 @@
+import AddPetView from '@/components/layout/AddPetView.vue';
+import PetViews from '@/components/layout/PetViews.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
@@ -5,8 +7,17 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: () => import('../views/HomeView.vue'),
+      redirect: '/pets'
+    },
+    {
+      path: '/pets',
+      name: '/pets',
+      component: PetViews
+    },
+    {
+      path: '/pet/novo',
+      name: '/pet/novo',
+      component: AddPetView
     },
   ],
 });
