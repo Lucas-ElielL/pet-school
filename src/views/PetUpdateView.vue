@@ -28,15 +28,15 @@
 
   }
 
-  onMounted(carregarPet);
+  onMounted(carregarTutor);
 </script>
 
 <template>
-  <h1> Nome do Pet: {{ pet.nome }}</h1>
+  <h1> Nome do Pet: {{ tutores.nome }}</h1>
   <label for="nome">Atualizar o Nome:</label>
   <input type="text" name="nome" id="nome"  v-model="petNome">
   <button @click="atualizarNome" class="btn btn-primary">Atualizar</button>
-  <p> Espécie: {{ pet.especie }}</p>
+  <p> Espécie: {{ tutores.telefone }}</p>
   <p> Tutor: {{ tutores.find(tutor => tutor.id === pet.tutorId)?.nome }}</p>
 
   <button class="btn default">

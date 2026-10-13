@@ -40,6 +40,11 @@ const router = createRouter({
       name: 'atualiuzar-tutor',
       component: () => import('../views/TutoresUpdateView.vue'),
     },
+    {
+      path: '/tutores/:id',
+      name: 'detalhes-tutor',
+      component: () => import('../views/TutorDetailsView.vue'),
+    },
   ],
 });
 
