@@ -1,16 +1,16 @@
 <script setup>
   import { onMounted, ref } from 'vue';
   import { RouterLink, useRoute } from 'vue-router';
-  const pet = ref({});
   const tutores = ref([]);
   const route = useRoute();
   const API_URL = 'http://localhost:3000';
-  const petNome = ref('');
+  const novoTutor = {
+    id: '',
+    nome: '',
+    telefone: '',
+  }
 
-  async function carregarPet() {
-    const idPet = route.params.id;
-    console.log('Id do Pet:', idPet);
-
+  async function carregarTutor() {
 
   const respostaPet = await fetch(`${API_URL}/pets/${idPet}`);
   pet.value = await respostaPet.json();
@@ -18,8 +18,14 @@
   const respostaTutor = await fetch(`${API_URL}/tutores`);
   tutores.value = await respostaTutor.json();
   }
-  async function atualizarNome() {
-    pet.value.nome.put(petNome)
+  async function atualizarNome(id, dados) {
+    const resposta = await fetch(`${API_URL}/tutores/${id}`,
+      {
+        method: "PATCH",
+        body: JSON.stringify(dados)
+      }
+    );
+
   }
 
   onMounted(carregarPet);

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import PetViews from '../views/PetViews.vue';
 import AddPetView from '../views/AddPetView.vue';
+import TutoresDetailsView from '@/views/TutoresDetailsView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,16 @@ const router = createRouter({
       path: '/pets/atualizar/:id',
       name: 'atualiuzar-pet',
       component: () => import('../views/PetUpdateView.vue'),
+    },
+    {
+      path: '/tutores',
+      name: 'tutores',
+      component: TutoresDetailsView,
+    },
+    {
+      path: '/tutores/atualizar/:id',
+      name: 'atualiuzar-tutor',
+      component: () => import('../views/TutoresUpdateView.vue'),
     },
   ],
 });
