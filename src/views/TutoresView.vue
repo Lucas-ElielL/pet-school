@@ -14,9 +14,9 @@ async function carregarDados() {
 
   loading.value = false;
 }
-/*
-async function exluirPet(id) {
-  const confirmarExclusao = window.confirm('Deseja realmente escluir o pet?');
+
+async function exluirTutor(id) {
+  const confirmarExclusao = window.confirm('Deseja realmente escluir o tutor?');
   if (confirmarExclusao) {
     await fetch(`${API_URL}/tutores/${id}`, {
       method: 'DELETE',
@@ -24,7 +24,7 @@ async function exluirPet(id) {
     await carregarDados();
   }
 }
-*/
+
 onMounted(carregarDados);
 </script>
 
@@ -39,9 +39,9 @@ onMounted(carregarDados);
 
     <RouterLink
       class="btn btn-primary"
-      :to="{ name: 'addPet' }"
+      :to="{ name: 'adicionar-tutor' }"
     >
-      Adicionar Pet
+      Adicionar Tutor
     </RouterLink>
 
     <table class="table table-striped table-hover">
@@ -65,7 +65,7 @@ onMounted(carregarDados);
           <td>
            <RouterLink :to="`/tutores/${tutor.id}`"> Visualizar </RouterLink>
             <RouterLink :to="`/tutores/atualizar/${tutor.id}`"> Atualizar </RouterLink>
-             <!--<button class="btn btn-danger " @click="exluirPet(tutor.id)"> Excluir </button>-->
+            <button class="btn btn-danger " @click="exluirTutor(tutor.id)"> Excluir </button>
           </td>
         </tr>
       </tbody>

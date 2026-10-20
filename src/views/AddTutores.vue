@@ -2,10 +2,9 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 
-const novoPet = ref({
+const novoTutor = ref({
   nome: '',
-  especie: '',
-  tutorId: '',
+  telefone: '',
 });
 
 const router = useRouter();
@@ -24,15 +23,15 @@ async function carregarTutores() {
   tutores.value = await resposta.json();
 }
 
-async function salvarPet() {
-  await fetch(`${API_URL}/pets`, {
+async function salvarTutor() {
+  await fetch(`${API_URL}/tutores`, {
     method: 'POST',
     header: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(novoPet.value),
+    body: JSON.stringify(novoTutor.value),
   });
-  router.push('/pets');
+  router.push('/tutores');
 }
 
 onMounted(carregarTutores);
@@ -41,8 +40,8 @@ onMounted(carregarTutores);
 <template>
   <div>
     <header class="mb-4">
-      <h1 class="text-2xl font-bold">Listagem de Pets</h1>
-      <p class="text-body-secondary mb-0">Cadastro de Pets no sistema.</p>
+      <h1 class="text-2xl font-bold">Adicionar Tutores</h1>
+      <p class="text-body-secondary mb-0">Cadastro de Tutores no sistema.</p>
     </header>
 
 
@@ -58,19 +57,19 @@ onMounted(carregarTutores);
       </p>
     </div>
 
-    <form @submit.prevent="salvarPet">
+    <form @submit.prevent="salvarTutor">
       <div class="col-md-6">
         <label
           for="nome"
           class="form-label"
         >
-          Nome do Pet
+          Nome do Tutor
         </label>
 
         <input
           type="text"
           id="nome"
-          v-model="novoPet.nome"
+          v-model="novoTutor.nome"
           class="form-control"
           required
         />
@@ -78,63 +77,25 @@ onMounted(carregarTutores);
 
       <div class="col-md-6">
         <label
-          for="especie"
+          for="telefone"
           class="form-label"
         >
-          Espécie
+          Telefone
         </label>
 
-        <select
-          id="especie"
-          v-model="novoPet.especie"
-          class="form-select"
+        <input
+          type="text"
+          id="telefone"
+          v-model="novoTutor.telefone"
+          class="form-control"
           required
-        >
-          <option
-            value=""
-            disabled
-          >
-            Selecione a Espécie
-          </option>
-          <option value="Cachorro">Cachorro</option>
-          <option value="Gato">Gato</option>
-        </select>
-      </div>
-
-      <div class="col-md-6">
-        <label
-          for="tutor"
-          class="form-label"
-        >
-          Tutor
-        </label>
-
-        <select
-          id="tutor"
-          v-model="novoPet.tutorId"
-          class="form-select"
-          required
-        >
-          <option
-            value=""
-            disabled
-          >
-            Selecione um Tutor
-          </option>
-          <option
-            v-for="tutor in tutores"
-            :key="tutor.id"
-            :value="tutor.id"
-          >
-            {{ tutor.nome }}
-          </option>
-        </select>
+        />
       </div>
       <button
         type="submit"
         class="btn btn-primary"
       >
-        Salvar Pet
+        Salvar Tutor
       </button>
 
 

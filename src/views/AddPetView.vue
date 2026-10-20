@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { RouterLink, useRouter } from 'vue-router';
 
 const novoPet = ref({
   nome: '',
@@ -130,14 +130,13 @@ onMounted(carregarTutores);
           </option>
         </select>
       </div>
+
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary mt-3"
       >
         Salvar Pet
       </button>
-
-
     </form>
   </div>
 </template>
