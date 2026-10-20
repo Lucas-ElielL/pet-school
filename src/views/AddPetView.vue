@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, ref } from 'vue';
-import { RouterLink, useRouter } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const novoPet = ref({
   nome: '',
@@ -14,8 +14,9 @@ const router = useRouter();
 // será reponsavel por cadastrar novos pets
 
 const API_URL = 'http://localhost:3000';
-
-const tutores = ref({});
+const tutores = ref([]);
+const carregandoTutores = ref(true);
+const erro = ref('');
 
 async function carregarTutores() {
   const resposta = await fetch(`${API_URL}/tutores`);
@@ -27,7 +28,7 @@ async function salvarPet() {
   await fetch(`${API_URL}/pets`, {
     method: 'POST',
     header: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(novoPet.value),
   });
@@ -44,12 +45,7 @@ onMounted(carregarTutores);
       <p class="text-body-secondary mb-0">Cadastro de Pets no sistema.</p>
     </header>
 
-    <RouterLink
-      class="btn btn-primary"
-      :to="{ name: 'addPet' }"
-    >
-      Adicionar Pet
-    </RouterLink>
+
 
     <p v-if="carregandoTutores">Carregando Tutores ...</p>
     <div v-else>
@@ -82,7 +78,7 @@ onMounted(carregarTutores);
 
       <div class="col-md-6">
         <label
-          for="nome"
+          for="especie"
           class="form-label"
         >
           Espécie
@@ -134,6 +130,14 @@ onMounted(carregarTutores);
           </option>
         </select>
       </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+      >
+        Salvar Pet
+      </button>
+
+
     </form>
   </div>
 </template>

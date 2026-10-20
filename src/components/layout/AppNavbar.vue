@@ -52,10 +52,10 @@ import { RouterLink } from 'vue-router';
             >Tutor</RouterLink
           >
           <RouterLink
-            class="nav-link"
-            to="/tutores"
-            >Tutor</RouterLink
-          >
+          class="nav-link"
+          to="/tutores/novo">
+          Novo tutor
+          </RouterLink>
         </div>
       </div>
     </div>
